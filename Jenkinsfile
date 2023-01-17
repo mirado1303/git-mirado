@@ -5,20 +5,20 @@ pipeline {
 	}
 	
 	environment {
-		PROJECT_ID = 'i-monolith-366616'
-        CLUSTER_NAME = 'cluster-1'
-        LOCATION = 'us-east1-c'
-        CREDENTIALS_ID = 'kubernetes'		
+		PROJECT_ID = 'faby-375009'
+                CLUSTER_NAME = 'cluster-1'
+                LOCATION = 'us-central1-a'
+                CREDENTIALS_ID = 'kubernetes'		
 	}
 	
     stages {
-	    stage('SCM Checkout') {
+	    stage('Scm Checkout') {
 		    steps {
 			    checkout scm
 		    }
 	    }
-
-           stage('Build') {
+	    
+	    stage('Build') {
 		    steps {
 			    sh 'mvn clean package'
 		    }
@@ -31,11 +31,11 @@ pipeline {
 		    }
 	    }
 	    
-	     stage('Build Docker Image') {
+	    stage('Build Docker Image') {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("aryas13/jenkins_project:${env.BUILD_ID}")
+				    myimage = docker.build("fabien123/devops:${env.BUILD_ID}")
 			    }
 		    }
 	    }
@@ -45,7 +45,7 @@ pipeline {
 			    script {
 				    echo "Push Docker Image"
 				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            				sh "docker login -u aryas13 -p ${dockerhub}"
+            				sh "docker login -u fabien123 -p ${dockerhub}"
 				    }
 				        myimage.push("${env.BUILD_ID}")
 				    
@@ -53,9 +53,9 @@ pipeline {
 		    }
 	    }
 	    
-	    stage('Deploy to K8S') {
+	    stage('Deploy to K8s') {
 		    steps{
-			    echo "Deployment started ..."
+			   	echo "Deployment started ..."
 			    sh 'ls -ltr'
 			    sh 'pwd'
 			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' springBootMongoLB.yml"

@@ -5,7 +5,7 @@ pipeline {
 	}
 	
 	environment {
-		PROJECT_ID = 'faby-375009'
+		PROJECT_ID = 'faby-375009''
                 CLUSTER_NAME = 'cluster-1'
                 LOCATION = 'us-central1-a'
                 CREDENTIALS_ID = 'kubernetes'		
@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("fabien123/jenkins_project:${env.BUILD_ID}")
+				    myimage = docker.build("fabien123/project:${env.BUILD_ID}")
 			    }
 		    }
 	    }
@@ -55,15 +55,15 @@ pipeline {
 	    
 	    stage('Deploy to K8s') {
 		    steps{
-			   	echo "Deployment started ..."
+			    echo "Deployment started ..."
 			    sh 'ls -ltr'
 			    sh 'pwd'
 			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' serviceLB.yaml"
-				sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployement.yaml"
+				sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
 			    echo "Start deployment of serviceLB.yaml"
 			    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'serviceLB.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-			    echo "Start deployment deployement.yaml"
-				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployement.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+				echo "Start deployment of deployment.yaml"
+				step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    echo "Deployment Finished ..."
 		    }
 	    }

@@ -5,7 +5,7 @@ pipeline {
 	}
 	
 	environment {
-		PROJECT_ID = 'faby-375009''
+		PROJECT_ID = 'faby-375009'
                 CLUSTER_NAME = 'cluster-1'
                 LOCATION = 'us-central1-a'
                 CREDENTIALS_ID = 'kubernetes'		

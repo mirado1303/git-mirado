@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: springboot-loadbalancer
-     image: fabien123/fabien:tagversion
+     image: fabien123/jenkins_project:tagversion
      ports:
      - containerPort: 8080
 

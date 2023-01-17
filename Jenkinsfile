@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("fabien123/devops:${env.BUILD_ID}")
+				    myimage = docker.build("fabien123/jenkins_project:${env.BUILD_ID}")
 			    }
 		    }
 	    }

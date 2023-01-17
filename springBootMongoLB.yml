@@ -23,7 +23,7 @@ spec:
         app: springboot
     spec:
       containers:
-      - image: fabien123/fabien
+      - image: fabien/jenkins_project
         name: springboot
         ports:
         - containerPort: 8080  

@@ -23,7 +23,7 @@ spec:
         app: springboot
     spec:
       containers:
-      - image: fabien123/fabien:tagversion
+      - image: fabien123/jenkins_project:tagversion
         name: springboot
         ports:
         - containerPort: 8080  
@@ -118,4 +118,3 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-

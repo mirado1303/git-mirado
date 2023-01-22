@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("mirado1303/jenkins-docker-k8s-projet:${env.BUILD_ID}")
+				    myimage = docker.build("mirado1303/jenkins_project:${env.BUILD_ID}")
 			    }
 		    }
 	    }

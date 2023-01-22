@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp
-     image: mirado1303/jenkins-docker-k8s-projett:agversion
+     image: mirado1303/jenkins-docker-k8s-projet:agversion
      ports:
      - containerPort: 8080
 

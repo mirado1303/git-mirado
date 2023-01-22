@@ -7,7 +7,7 @@ pipeline {
 	environment {
 		PROJECT_ID = 'dev-solstice-374612'
                 CLUSTER_NAME = 'cluster-1'
-                LOCATION = 'southamerica-west1-c'
+                LOCATION = 'us-central1-a'
                 CREDENTIALS_ID = 'kubernetes'		
 	}
 	
@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("mirado1303/jenkins-docker-k8s-projet:${env.BUILD_ID}")
+				    myimage = docker.build("mirado1303/project:${env.BUILD_ID}")
 			    }
 		    }
 	    }

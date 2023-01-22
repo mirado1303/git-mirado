@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp
-     image: mirado1303/jenkins-docker-k8s-projet:tagversion
+     image: mirado1303/jenkins_project:tagversion
      ports:
      - containerPort: 8080
 

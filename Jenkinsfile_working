@@ -6,7 +6,7 @@ pipeline {
 	
 	environment {
 		dockerImage =''
-		registry = "mirado1303/jenkins-docker-k8s-projet" 
+		registry = "mirado1303/project" 
 	        registryCredential = 'dockerhub' 
 			
 	}

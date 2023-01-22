@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp-app-loadbalancer
-     image: fabien123/project:tagversion
+     image: mirado1303/:tagversion
      ports:
      - containerPort: 8080
 

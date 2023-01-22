@@ -5,9 +5,9 @@ pipeline {
 	}
 	
 	environment {
-		PROJECT_ID = 'faby-375009'
+		PROJECT_ID = 'dev-solstice-374612'
                 CLUSTER_NAME = 'cluster-1'
-                LOCATION = 'us-central1-a'
+                LOCATION = 'southamerica-west1-c'
                 CREDENTIALS_ID = 'kubernetes'		
 	}
 	
@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("fabien123/project:${env.BUILD_ID}")
+				    myimage = docker.build("mirado1303/jenkins-docker-k8s-projet:${env.BUILD_ID}")
 			    }
 		    }
 	    }
@@ -45,7 +45,7 @@ pipeline {
 			    script {
 				    echo "Push Docker Image"
 				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            				sh "docker login -u fabien123 -p ${dockerhub}"
+            				sh "docker login -u mirado1303-p ${dockerhub}"
 				    }
 				        myimage.push("${env.BUILD_ID}")
 				    

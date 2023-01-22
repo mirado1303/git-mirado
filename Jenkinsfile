@@ -35,7 +35,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build("mirado1303/jenkins_project:${env.BUILD_ID}")
+				    myimage = docker.build("mirado13/jenkins_project:${env.BUILD_ID}")
 			    }
 		    }
 	    }
@@ -45,7 +45,7 @@ pipeline {
 			    script {
 				    echo "Push Docker Image"
 				    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            				sh "docker login -u 123mi@/345 -p ${dockerhub}"
+            				sh "docker login -u mirado1303 -p ${dockerhub}"
 				    }
 				        myimage.push("${env.BUILD_ID}")
 				    
